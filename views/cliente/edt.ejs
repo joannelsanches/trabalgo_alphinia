@@ -1,0 +1,32 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Editar Cliente</h1>
+<div>
+    <a href="/cliente/lst" class="btn">Listar Clientes</a>
+</div>
+<div>
+    <form method="post">
+        <input type="hidden" name="id" value="<%=Cliente._id%>">
+        
+        <label>Nome:</label>
+        <input type="text" name="nome" value="<%=Cliente.nome%>" required><br>
+        
+        <label>Data Nascimento:</label>
+        <input type="date" name="dataNascimento" value="<%=Cliente.dataNascimento.toISOString().split('T')[0]%>" required><br>
+        
+        <label>Endereço:</label>
+        <input type="text" name="endereco" value="<%=Cliente.endereco%>" required><br>
+        
+        <label>Telefone:</label>
+        <input type="text" name="telefone" value="<%=Cliente.telefone%>" required><br>
+        
+        <label>CPF:</label>
+        <input type="text" name="cpf" value="<%=Cliente.cpf%>" required><br>
+        
+        <label>Senha:</label>
+        <input type="password" name="senha" value="<%=Cliente.senha%>" required><br>
+
+        <button type="submit" class="btn edit">Atualizar</button>
+        <a href="/cliente/lst" class="btn">Voltar</a>
+    </form>
+</div>
+<%-include('../rodape.ejs')%>

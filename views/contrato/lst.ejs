@@ -1,0 +1,33 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Contratos</h1>
+<div>
+    <form method="post">
+        <input type="text" name="filtro" placeholder="Digite o nome do cliente...">
+        <button type="submit" class="btn">Pesquisar</button>
+    </form>
+</div>
+<a href="/contrato/add" class="btn add">+ Adicionar Contrato</a>
+<table>
+    <tr>
+        <td>Cliente</td>
+        <td>Quarto</td>
+        <td>Data Início</td>
+        <td>Data Fim</td>
+        <td>Valor</td>
+        <td>Ações</td>
+    </tr>
+    <% for (const contrato of Contratos){ %>
+    <tr>
+        <td><%=contrato.cliente ? contrato.cliente.nome : 'N/A'%></td>
+        <td><%=contrato.quarto ? contrato.quarto.numero : 'N/A'%></td>
+        <td><%=contrato.data_inicio ? new Date(contrato.data_inicio).toLocaleDateString() : ''%></td>
+        <td><%=contrato.data_fim ? new Date(contrato.data_fim).toLocaleDateString() : ''%></td>
+        <td>R$ <%=contrato.valor || '0.00'%></td>
+        <td>
+            <a href="/contrato/edt/<%=contrato._id%>" class="btn edit">Editar</a>
+            <a href="/contrato/del/<%=contrato._id%>" class="btn delete">Excluir</a>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<%-include('../rodape.ejs')%>

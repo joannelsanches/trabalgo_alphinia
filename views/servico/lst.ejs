@@ -1,0 +1,27 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Serviços</h1>
+<div>
+    <form method="post">
+        <input type="text" name="filtro" placeholder="Digite a descrição do serviço...">
+        <button type="submit" class="btn">Pesquisar</button>
+    </form>
+</div>
+<a href="/servico/add" class="btn add">+ Adicionar Serviço</a>
+<table>
+    <tr>
+        <td>Descrição</td>
+        <td>Valor</td>
+        <td>Ações</td>
+    </tr>
+    <% for (const servico of Servicos) { %>
+    <tr>
+        <td><%=servico.descricao%></td>
+        <td>R$ <%=servico.valor%></td>
+        <td>
+            <a href="/servico/edt/<%=servico._id%>" class="btn edit">Editar</a>
+            <a href="/servico/del/<%=servico._id%>" class="btn delete">Excluir</a>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<%-include('../rodape.ejs')%>

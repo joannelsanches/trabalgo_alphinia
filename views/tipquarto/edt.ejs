@@ -1,0 +1,33 @@
+<%-include('../cabecalho.ejs')%>
+
+<h1>Editar Tipo de Quarto</h1>
+<div>
+    <a href="/tipquarto/lst" class="btn">Listar Tipos</a>
+</div>
+<div>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="<%=Tipquarto._id%>">
+        
+        <label>Nome:</label>
+        <input type="text" name="nome" value="<%=Tipquarto.nome%>" required><br>
+        
+        <label>Descrição:</label>
+        <textarea name="descricao" rows="4" required><%=Tipquarto.descricao%></textarea><br>
+        
+        <label>Imagem Atual:</label>
+        <div>
+            <% if (Tipquarto.img) { %>
+                <img src="<%=Tipquarto.img%>" width="150" height="150" style="object-fit: cover;">
+            <% } else { %>
+                <p>Sem imagem</p>
+            <% } %>
+        </div>
+        
+        <label>Nova Imagem (opcional):</label>
+        <input type="file" name="img" accept="image/*"><br>
+
+        <button type="submit" class="btn edit">Atualizar</button>
+        <a href="/tipquarto/lst" class="btn">Voltar</a>
+    </form>
+</div>
+<%-include('../rodape.ejs')%>

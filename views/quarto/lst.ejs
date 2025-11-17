@@ -1,0 +1,33 @@
+<%-include('../cabecalho.ejs')%>
+<h1>Quartos</h1>
+<div>
+    <form method="post">
+        <input type="text" name="filtro" placeholder="Digite o número do quarto...">
+        <button type="submit" class="btn">Pesquisar</button>
+    </form>
+</div>
+<a href="/quarto/add" class="btn add">+ Adicionar Quarto</a>
+<table>
+    <tr>
+        <td>Número</td>
+        <td>Andar</td>
+        <td>Capacidade</td>
+        <td>Diária</td>
+        <td>Tipo de Quarto</td>
+        <td>Ações</td>
+    </tr>
+    <% for (const quarto of Quartos) { %>
+    <tr>
+        <td><%=quarto.numero%></td>
+        <td><%=quarto.andar%></td>
+        <td><%=quarto.capacidade%> pessoas</td>
+        <td>R$ <%=quarto.diaria%></td>
+        <td><%=quarto.tipquarto.nome%></td>
+        <td>
+            <a href="/quarto/edt/<%=quarto._id%>" class="btn edit">Editar</a>
+            <a href="/quarto/del/<%=quarto._id%>" class="btn delete">Excluir</a>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<%-include('../rodape.ejs')%>
