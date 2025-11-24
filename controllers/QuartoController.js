@@ -34,13 +34,13 @@ export default class QuartoController{
             res.render(this.caminhoBase + 'lst', {Quartos: resultado, Tipquartos: tipos})
         }
         
-        this.find = async(req, res)=>{
-            const filtro = req.body.filtro;
-            const resultado = await Quarto.find({ 
-                numero: { $regex: filtro, $options: "i" }
-            }).populate('tipquarto')
-            res.render(this.caminhoBase + 'lst', {Quartos: resultado})
-        }
+       this.find = async(req, res)=>{
+                   const filtro = req.body.filtro;
+                   const resultado = await Quarto.find({ 
+                       numero: { $regex: filtro, $options: "i" }
+                   })
+                   res.render(this.caminhoBase + 'lst', {Quartos: resultado})
+               }
 
         this.openEdt = async(req, res)=>{
             const id = req.params.id

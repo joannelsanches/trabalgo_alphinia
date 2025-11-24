@@ -6,7 +6,7 @@ diaria: {
         required: true,
     },
     numero: {
-        type: Number,
+        type: String,
         required: true,
     },
     capacidade: {

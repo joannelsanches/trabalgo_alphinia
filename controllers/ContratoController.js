@@ -42,24 +42,31 @@ export default class ContratoController{
             }
         }
 
-        this.find = async(req, res)=>{
-            try {
-                const filtro = req.body.filtro;
-                const contratos = await Contrato.find({ 
-                        'cliente.nome': { 
-                            $regex: filtro, 
-                            $options: "i" 
-                        }
-                    })
-                    .populate('cliente')
-                    .populate('quarto');
-                
-                res.render(caminhoBase + 'lst', {Contratos: contratos})
-            } catch (error) {
-                console.error('Erro na pesquisa:', error);
-                res.render(caminhoBase + 'lst', {Contratos: []})
+       this.find = async(req, res)=>{
+    try {
+        const filtro = req.body.filtro;
+        
+        const clientesEncontrados = await Cliente.find({ 
+            nome: { 
+                $regex: filtro, 
+                $options: "i" 
             }
-        }
+        });
+        
+        const clienteIds = clientesEncontrados.map(cliente => cliente._id);
+        
+        const contratos = await Contrato.find({ 
+            cliente: { $in: clienteIds }
+        })
+        .populate('cliente')
+        .populate('quarto');
+        
+        res.render(caminhoBase + 'lst', {Contratos: contratos})
+    } catch (error) {
+        console.error('Erro na pesquisa:', error);
+        res.render(caminhoBase + 'lst', {Contratos: []})
+    }
+}
 
         this.openEdt = async(req, res)=>{
             try {
